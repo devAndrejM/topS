@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿# ClothingSearch App
 
 Multi-store clothing search aggregator that searches multiple retailers simultaneously.
@@ -60,3 +61,6 @@ Commission-based affiliate links (3-8% per sale)
 
 ---
 **Status**: 🟢 MVP Complete - Ready for real store integration
+=======
+# topS
+>>>>>>> 30225e9e59151c5295da47c9645d27089c590f25
