@@ -1,0 +1,60 @@
+﻿# .NET
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.docstates
+*.tmp
+
+# Visual Studio
+.vs/
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.opendb
+*.VC.db
+
+# Node.js / Angular
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+dist/
+.angular/
+
+# Environment variables
+.env
+.env.local
+.env.production
+appsettings.Development.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+logs/
+*.log
+
+# Database
+*.db
+*.sqlite
+
+# Temporary files
+temp/
+tmp/
+
+# Build outputs
+build/
+output/
+
+# Package files
+*.nupkg
+*.snupkg

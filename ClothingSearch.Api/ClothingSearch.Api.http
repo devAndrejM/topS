@@ -1,0 +1,32 @@
+@ClothingSearch.Api_HostAddress = http://localhost:5080
+
+### Test WeatherForecast (Default endpoint)
+GET {{ClothingSearch.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+### Test Countries Endpoint
+GET {{ClothingSearch.Api_HostAddress}}/api/user/countries
+Accept: application/json
+
+### Test Search Endpoint
+GET {{ClothingSearch.Api_HostAddress}}/api/search?query=test&userId=debug-user
+Accept: application/json
+
+### Test Search Categories
+GET {{ClothingSearch.Api_HostAddress}}/api/search/categories?query=nike&userId=debug-user
+Accept: application/json
+
+### Test User Settings (GET)
+GET {{ClothingSearch.Api_HostAddress}}/api/user/debug-user/settings
+Accept: application/json
+
+### Test User Settings (POST)
+POST {{ClothingSearch.Api_HostAddress}}/api/user/debug-user/settings
+Content-Type: application/json
+
+{
+  "countryId": 1,
+  "clothingSize": "M",
+  "shoeSize": "42",
+  "shoeSizeSystem": "EU"
+}
