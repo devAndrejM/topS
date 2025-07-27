@@ -12,6 +12,7 @@ $RECYCLE.BIN/
 *.log
 log.txt
 
+
 /.sourcemaps
 /.versions
 /coverage
@@ -51,6 +52,7 @@ yarn-error.log
 !.vscode/extensions.json
 .history/*
 
+
 # Miscellaneous
 /.angular
 /.angular/cache
@@ -66,75 +68,3 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
-
-# TypeScript
-*.tsbuildinfo
-
-# Angular
-.angular/
-.nx/
-*.ngfactory.ts
-*.ngstyle.ts
-
-# Build outputs
-build/
-dist/
-
-# Environment files
-.env
-.env.local
-.env.*.local
-
-# Logs
-logs/
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# Dependency directories
-jspm_packages/
-
-# Optional npm cache directory
-.npm
-
-# Optional REPL history
-.node_repl_history
-
-# Output of 'npm pack'
-*.tgz
-
-# Yarn Integrity file
-.yarn-integrity
-
-# parcel-bundler cache (https://parceljs.org/)
-.cache
-.parcel-cache
-
-# next.js build output
-.next
-
-# nuxt.js build output
-.nuxt
-
-# vuepress build output
-.vuepress/dist
-
-# Serverless directories
-.serverless
-
-# FuseBox cache
-.fusebox/
-
-# DynamoDB Local files
-.dynamodb/
-
-# Capacitor
-android/
-ios/
