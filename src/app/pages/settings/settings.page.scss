@@ -1,0 +1,169 @@
+﻿// Settings Page Clean Design
+:host {
+  --background: #f8fafc;
+  --primary-blue: #2563eb;
+  --success-green: #10b981;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  --border-light: #e2e8f0;
+  --border-lighter: #f1f5f9;
+  --card-background: #ffffff;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --radius-md: 12px;
+}
+
+.settings-content {
+  --background: var(--background);
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+}
+
+// Clean App Header
+.app-header {
+  background: var(--card-background);
+  padding: 40px 20px 30px;
+  text-align: center;
+  border-bottom: 1px solid var(--border-lighter);
+  
+  .app-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+  
+  .app-subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+}
+
+// Settings Groups
+.settings-group {
+  background: var(--card-background);
+  margin: 16px 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.settings-group-title {
+  padding: 16px;
+  background: #f8fafc;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+// Setting Items
+.setting-item {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-lighter);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 60px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  &:hover {
+    background-color: #f8fafc;
+  }
+}
+
+.setting-label {
+  font-size: 16px;
+  color: var(--text-primary);
+  font-weight: 500;
+  flex: 1;
+}
+
+.setting-value {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  
+  &.action {
+    color: var(--primary-blue);
+    cursor: pointer;
+  }
+}
+
+// Form Controls
+.setting-select {
+  --background: #f8fafc;
+  --color: var(--text-primary);
+  --padding-start: 12px;
+  --padding-end: 12px;
+  
+  min-width: 120px;
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.setting-toggle {
+  --background: var(--border-light);
+  --background-checked: var(--primary-blue);
+  --handle-background: var(--card-background);
+  --handle-background-checked: var(--card-background);
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .app-header {
+    padding: 30px 16px 24px;
+    
+    .app-title {
+      font-size: 24px;
+    }
+    
+    .app-subtitle {
+      font-size: 14px;
+    }
+  }
+  
+  .settings-group {
+    margin: 12px 16px;
+  }
+  
+  .setting-item {
+    padding: 14px;
+    min-height: 56px;
+  }
+  
+  .setting-label {
+    font-size: 15px;
+  }
+  
+  .setting-value {
+    font-size: 13px;
+  }
+}
+
+// Dark mode support
+@media (prefers-color-scheme: dark) {
+  :host {
+    --background: #0f172a;
+    --card-background: #1e293b;
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-muted: #64748b;
+    --border-light: #334155;
+    --border-lighter: #475569;
+  }
+}

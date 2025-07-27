@@ -1,0 +1,328 @@
+﻿/*
+ * ClothingSearch Global Styles - Clean Design System
+ * Based on approved mockups with modern, Google-like interface
+ */
+
+/* Core Design System Variables */
+:root {
+  --cs-primary-blue: #2563eb;
+  --cs-success-green: #10b981;
+  --cs-danger-red: #ef4444;
+  --cs-warning-orange: #f59e0b;
+  
+  --cs-text-primary: #1e293b;
+  --cs-text-secondary: #64748b;
+  --cs-text-muted: #94a3b8;
+  --cs-text-disabled: #cbd5e1;
+  
+  --cs-background: #f8fafc;
+  --cs-background-secondary: #f1f5f9;
+  --cs-card-background: #ffffff;
+  
+  --cs-border-light: #e2e8f0;
+  --cs-border-lighter: #f1f5f9;
+  
+  --cs-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
+  --cs-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --cs-shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+  
+  --cs-radius-sm: 8px;
+  --cs-radius-md: 12px;
+  --cs-radius-lg: 16px;
+  --cs-radius-xl: 20px;
+  
+  --cs-spacing-xs: 4px;
+  --cs-spacing-sm: 8px;
+  --cs-spacing-md: 12px;
+  --cs-spacing-lg: 16px;
+  --cs-spacing-xl: 20px;
+  --cs-spacing-2xl: 24px;
+  --cs-spacing-3xl: 32px;
+}
+
+/* Typography System */
+.cs-title-large {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  color: var(--cs-text-primary);
+}
+
+.cs-title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--cs-text-primary);
+}
+
+.cs-subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--cs-text-secondary);
+}
+
+.cs-body-large {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--cs-text-primary);
+}
+
+.cs-body {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--cs-text-primary);
+}
+
+.cs-body-small {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--cs-text-secondary);
+}
+
+.cs-caption {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--cs-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Global Ionic Overrides */
+ion-app {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+  background: var(--cs-background);
+}
+
+/* Clean Toolbar Styling */
+ion-toolbar {
+  --background: var(--cs-card-background);
+  --color: var(--cs-text-primary);
+  --border-color: var(--cs-border-light);
+  --border-width: 0 0 1px 0;
+  
+  ion-title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  ion-back-button {
+    --color: var(--cs-primary-blue);
+  }
+}
+
+/* Clean Searchbar Styling */
+ion-searchbar {
+  --background: var(--cs-background-secondary);
+  --color: var(--cs-text-primary);
+  --placeholder-color: var(--cs-text-muted);
+  --icon-color: var(--cs-text-muted);
+  --clear-button-color: var(--cs-text-muted);
+  --border-radius: var(--cs-radius-md);
+  --box-shadow: none;
+  
+  .searchbar-input-container {
+    border: 2px solid var(--cs-border-light);
+    transition: all 0.2s ease;
+  }
+}
+
+/* Clean Button Styling */
+ion-button {
+  --border-radius: var(--cs-radius-md);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  
+  &.button-fill-solid {
+    --background: var(--cs-primary-blue);
+    --background-hover: #1d4ed8;
+    --background-activated: #1e40af;
+    --color: white;
+  }
+  
+  &.button-fill-outline {
+    --border-color: var(--cs-primary-blue);
+    --color: var(--cs-primary-blue);
+    --background-hover: rgba(37, 99, 235, 0.05);
+    --background-activated: rgba(37, 99, 235, 0.1);
+  }
+  
+  &.button-fill-clear {
+    --color: var(--cs-primary-blue);
+    --background-hover: rgba(37, 99, 235, 0.05);
+    --background-activated: rgba(37, 99, 235, 0.1);
+  }
+}
+
+/* Clean Card Styling */
+ion-card {
+  --background: var(--cs-card-background);
+  --color: var(--cs-text-primary);
+  border-radius: var(--cs-radius-md);
+  border: 1px solid var(--cs-border-light);
+  box-shadow: var(--cs-shadow-sm);
+  margin: var(--cs-spacing-lg);
+  
+  ion-card-header {
+    padding: var(--cs-spacing-xl);
+    border-bottom: 1px solid var(--cs-border-lighter);
+    
+    ion-card-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--cs-text-primary);
+    }
+    
+    ion-card-subtitle {
+      font-size: 14px;
+      color: var(--cs-text-secondary);
+      margin-top: var(--cs-spacing-xs);
+    }
+  }
+  
+  ion-card-content {
+    padding: var(--cs-spacing-xl);
+  }
+}
+
+/* Clean Chip Styling */
+ion-chip {
+  --background: var(--cs-background-secondary);
+  --color: var(--cs-text-primary);
+  border: 1px solid var(--cs-border-light);
+  border-radius: var(--cs-radius-xl);
+  font-weight: 500;
+  
+  &.chip-outline {
+    --border-color: var(--cs-primary-blue);
+    --color: var(--cs-primary-blue);
+  }
+}
+
+/* Clean Select Styling */
+ion-select {
+  --background: var(--cs-background-secondary);
+  --color: var(--cs-text-primary);
+  --placeholder-color: var(--cs-text-muted);
+  border: 1px solid var(--cs-border-light);
+  border-radius: var(--cs-radius-sm);
+  font-size: 14px;
+}
+
+/* Clean Toggle Styling */
+ion-toggle {
+  --background: var(--cs-border-light);
+  --background-checked: var(--cs-primary-blue);
+  --handle-background: var(--cs-card-background);
+  --handle-background-checked: var(--cs-card-background);
+}
+
+/* Clean Spinner Styling */
+ion-spinner {
+  --color: var(--cs-primary-blue);
+}
+
+/* Clean Toast Styling */
+ion-toast {
+  --background: var(--cs-text-primary);
+  --color: var(--cs-card-background);
+  --border-radius: var(--cs-radius-md);
+  
+  &.toast-success {
+    --background: var(--cs-success-green);
+  }
+  
+  &.toast-danger {
+    --background: var(--cs-danger-red);
+  }
+}
+
+/* Clean Alert Styling */
+ion-alert {
+  --background: var(--cs-card-background);
+  --color: var(--cs-text-primary);
+  --border-radius: var(--cs-radius-lg);
+  
+  .alert-head {
+    font-weight: 600;
+  }
+  
+  .alert-button {
+    --color: var(--cs-primary-blue);
+    font-weight: 600;
+  }
+}
+
+/* Utility Classes */
+.cs-text-center { text-align: center; }
+.cs-text-left { text-align: left; }
+.cs-text-right { text-align: right; }
+
+.cs-mt-xs { margin-top: var(--cs-spacing-xs); }
+.cs-mt-sm { margin-top: var(--cs-spacing-sm); }
+.cs-mt-md { margin-top: var(--cs-spacing-md); }
+.cs-mt-lg { margin-top: var(--cs-spacing-lg); }
+.cs-mt-xl { margin-top: var(--cs-spacing-xl); }
+
+.cs-mb-xs { margin-bottom: var(--cs-spacing-xs); }
+.cs-mb-sm { margin-bottom: var(--cs-spacing-sm); }
+.cs-mb-md { margin-bottom: var(--cs-spacing-md); }
+.cs-mb-lg { margin-bottom: var(--cs-spacing-lg); }
+.cs-mb-xl { margin-bottom: var(--cs-spacing-xl); }
+
+.cs-p-xs { padding: var(--cs-spacing-xs); }
+.cs-p-sm { padding: var(--cs-spacing-sm); }
+.cs-p-md { padding: var(--cs-spacing-md); }
+.cs-p-lg { padding: var(--cs-spacing-lg); }
+.cs-p-xl { padding: var(--cs-spacing-xl); }
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cs-text-primary: #f1f5f9;
+    --cs-text-secondary: #cbd5e1;
+    --cs-text-muted: #64748b;
+    --cs-text-disabled: #475569;
+    
+    --cs-background: #0f172a;
+    --cs-background-secondary: #1e293b;
+    --cs-card-background: #1e293b;
+    
+    --cs-border-light: #334155;
+    --cs-border-lighter: #475569;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .cs-title-large {
+    font-size: 24px;
+  }
+  
+  .cs-title {
+    font-size: 20px;
+  }
+  
+  ion-card {
+    margin: var(--cs-spacing-md);
+  }
+}
+
+/* Remove default Ionic styling that conflicts with clean design */
+ion-content {
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+}
+
+/* Hide default Ionic tabs styling - we'll use custom bottom navigation */
+ion-tab-bar {
+  display: none;
+}
