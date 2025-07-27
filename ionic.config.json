@@ -1,7 +1,0 @@
-{
-  "name": "ClothingSearch.Frontend",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular-standalone"
-}
