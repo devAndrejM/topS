@@ -1,70 +1,75 @@
-﻿# Testing Script for ClothingSearch App
+﻿# ClothingSearch App - Testing Script
+# Run all tests and quality checks
 
 param(
-    [string]$ProjectPath = "D:\Dev\ClothingSearchApp"
+    [switch]$Unit = $false,
+    [switch]$E2E = $false,
+    [switch]$Lint = $false,
+    [switch]$All = $false
 )
 
-Write-Host "=== Testing ClothingSearch App ===" -ForegroundColor Green
+$AppPath = "C:\dev\clothingsearch"  # Update this to your actual path
 
-Set-Location $ProjectPath
+Write-Host "🧪 ClothingSearch Testing Script" -ForegroundColor Green
 
-# Test backend
-Write-Host "Testing backend..." -ForegroundColor Cyan
-Set-Location "ClothingSearch.Api"
+# Change to app directory
+Set-Location $AppPath
 
-Write-Host "Running backend tests..." -ForegroundColor Yellow
-try {
-    # Build test
-    dotnet build --configuration Release
-    Write-Host "✅ Backend build test passed" -ForegroundColor Green
+if ($All) {
+    $Unit = $true
+    $E2E = $true
+    $Lint = $true
+}
+
+if ($Lint) {
+    Write-Host "🔍 Running linting..." -ForegroundColor Green
     
-    # Start backend temporarily to test
-    Write-Host "Starting backend for API test..." -ForegroundColor Yellow
-    $backendProcess = Start-Process dotnet -ArgumentList "run" -PassThru -NoNewWindow
+    # Frontend linting
+    Write-Host "Linting frontend..."
+    npm run lint
     
+    # Backend linting (if using dotnet format)
+    Write-Host "Linting backend..."
+    dotnet format --verify-no-changes
+    
+    Write-Host "✅ Linting completed!" -ForegroundColor Green
+}
+
+if ($Unit) {
+    Write-Host "🧪 Running unit tests..." -ForegroundColor Green
+    
+    # Frontend unit tests
+    Write-Host "Running frontend tests..."
+    npm run test:unit
+    
+    # Backend unit tests
+    Write-Host "Running backend tests..."
+    dotnet test
+    
+    Write-Host "✅ Unit tests completed!" -ForegroundColor Green
+}
+
+if ($E2E) {
+    Write-Host "🔄 Running E2E tests..." -ForegroundColor Green
+    
+    # Start local server
+    Write-Host "Starting local server..."
+    Start-Process -FilePath "ionic" -ArgumentList "serve" -NoNewWindow
+    
+    # Wait for server to start
     Start-Sleep -Seconds 10
     
-    # Test API endpoint
-    try {
-        $response = Invoke-RestMethod -Uri "https://localhost:7147/api/user/countries" -SkipCertificateCheck
-        Write-Host "✅ API endpoint test passed" -ForegroundColor Green
-        Write-Host "Found $($response.Count) countries in database" -ForegroundColor Cyan
-    } catch {
-        Write-Host "⚠️  API endpoint test failed (normal if DB not configured)" -ForegroundColor Yellow
-    }
+    # Run E2E tests
+    Write-Host "Running E2E tests..."
+    npm run test:e2e
     
-    # Stop backend
-    Stop-Process -Id $backendProcess.Id -Force
-    
-} catch {
-    Write-Host "❌ Backend test failed: $_" -ForegroundColor Red
+    Write-Host "✅ E2E tests completed!" -ForegroundColor Green
 }
 
-Set-Location ..
-
-# Test frontend
-Write-Host "Testing frontend..." -ForegroundColor Cyan
-Set-Location "ClothingSearch.Frontend"
-
-Write-Host "Running frontend tests..." -ForegroundColor Yellow
-try {
-    # Build test
-    ionic build --prod
-    Write-Host "✅ Frontend build test passed" -ForegroundColor Green
-    
-    # Check build output
-    if (Test-Path "www") {
-        $files = Get-ChildItem "www" -Recurse
-        Write-Host "✅ Frontend files generated: $($files.Count)" -ForegroundColor Green
-    }
-    
-} catch {
-    Write-Host "❌ Frontend test failed: $_" -ForegroundColor Red
+if (-not $Unit -and -not $E2E -and -not $Lint -and -not $All) {
+    Write-Host "Usage:" -ForegroundColor Yellow
+    Write-Host "  .\test.ps1 -Unit      # Run unit tests"
+    Write-Host "  .\test.ps1 -E2E       # Run E2E tests"
+    Write-Host "  .\test.ps1 -Lint      # Run linting"
+    Write-Host "  .\test.ps1 -All       # Run all tests"
 }
-
-Set-Location ..
-
-Write-Host ""
-Write-Host "=== Test Summary ===" -ForegroundColor Green
-Write-Host "Run './start.ps1' to start development environment" -ForegroundColor Cyan
-Write-Host "Check DEPLOYMENT.md for production deployment steps" -ForegroundColor Cyan

@@ -1,0 +1,147 @@
+﻿<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Settings</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/search"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="settings-page">
+  <div class="app-header">
+    <h1 class="app-title">Settings</h1>
+    <p class="app-subtitle">Configure your preferences</p>
+  </div>
+
+  <!-- Location & Delivery Settings -->
+  <div class="settings-group">
+    <h2 class="settings-group-title">Location & Delivery</h2>
+    
+    <div class="setting-item">
+      <label class="setting-label">Country</label>
+      <ion-select 
+        [(ngModel)]="settings.country" 
+        (ionChange)="onSettingChange()"
+        interface="popover"
+        class="select-input">
+        <ion-select-option value="Croatia">Croatia</ion-select-option>
+        <ion-select-option value="Germany">Germany</ion-select-option>
+        <ion-select-option value="Austria">Austria</ion-select-option>
+        <ion-select-option value="Slovenia">Slovenia</ion-select-option>
+        <ion-select-option value="Italy">Italy</ion-select-option>
+      </ion-select>
+    </div>
+
+    <div class="setting-item">
+      <span class="setting-label">Currency</span>
+      <span class="setting-value">{{ getCurrencyForCountry(settings.country) }}</span>
+    </div>
+  </div>
+
+  <!-- Size Preferences -->
+  <div class="settings-group">
+    <h2 class="settings-group-title">Size Preferences</h2>
+    
+    <div class="setting-item">
+      <label class="setting-label">Clothing Size</label>
+      <ion-select 
+        [(ngModel)]="settings.clothingSize" 
+        (ionChange)="onSettingChange()"
+        interface="popover"
+        class="select-input">
+        <ion-select-option value="XS">XS</ion-select-option>
+        <ion-select-option value="S">S</ion-select-option>
+        <ion-select-option value="M">M</ion-select-option>
+        <ion-select-option value="L">L</ion-select-option>
+        <ion-select-option value="XL">XL</ion-select-option>
+        <ion-select-option value="XXL">XXL</ion-select-option>
+      </ion-select>
+    </div>
+
+    <div class="setting-item">
+      <label class="setting-label">Shoe Size</label>
+      <ion-select 
+        [(ngModel)]="settings.shoeSize" 
+        (ionChange)="onSettingChange()"
+        interface="popover"
+        class="select-input">
+        <ion-select-option value="EU 39">EU 39</ion-select-option>
+        <ion-select-option value="EU 40">EU 40</ion-select-option>
+        <ion-select-option value="EU 41">EU 41</ion-select-option>
+        <ion-select-option value="EU 42">EU 42</ion-select-option>
+        <ion-select-option value="EU 43">EU 43</ion-select-option>
+        <ion-select-option value="EU 44">EU 44</ion-select-option>
+        <ion-select-option value="EU 45">EU 45</ion-select-option>
+        <ion-select-option value="EU 46">EU 46</ion-select-option>
+      </ion-select>
+    </div>
+
+    <div class="setting-item">
+      <label class="setting-label">Size System</label>
+      <ion-select 
+        [(ngModel)]="settings.sizeSystem" 
+        (ionChange)="onSettingChange()"
+        interface="popover"
+        class="select-input">
+        <ion-select-option value="EU">EU</ion-select-option>
+        <ion-select-option value="US">US</ion-select-option>
+        <ion-select-option value="UK">UK</ion-select-option>
+      </ion-select>
+    </div>
+  </div>
+
+  <!-- Search Preferences -->
+  <div class="settings-group">
+    <h2 class="settings-group-title">Search Preferences</h2>
+    
+    <div class="setting-item">
+      <label class="setting-label">Default Sort</label>
+      <ion-select 
+        [(ngModel)]="settings.defaultSort" 
+        (ionChange)="onSettingChange()"
+        interface="popover"
+        class="select-input">
+        <ion-select-option value="price">Best Price</ion-select-option>
+        <ion-select-option value="delivery">Fastest Delivery</ion-select-option>
+        <ion-select-option value="relevance">Relevance</ion-select-option>
+      </ion-select>
+    </div>
+
+    <div class="setting-item">
+      <label class="setting-label">Show Unavailable Sizes</label>
+      <ion-toggle 
+        [(ngModel)]="settings.showUnavailable" 
+        (ionChange)="onSettingChange()"
+        color="primary">
+      </ion-toggle>
+    </div>
+  </div>
+
+  <!-- About -->
+  <div class="settings-group">
+    <h2 class="settings-group-title">About</h2>
+    
+    <div class="setting-item">
+      <span class="setting-label">App Version</span>
+      <span class="setting-value">1.0.0</span>
+    </div>
+
+    <div class="setting-item" (click)="openPrivacyPolicy()">
+      <span class="setting-label">Privacy Policy</span>
+      <span class="setting-value">View →</span>
+    </div>
+
+    <div class="setting-item" (click)="openTermsOfService()">
+      <span class="setting-label">Terms of Service</span>
+      <span class="setting-value">View →</span>
+    </div>
+  </div>
+
+  <!-- Reset Settings -->
+  <div class="settings-group">
+    <div class="setting-item" (click)="resetSettings()">
+      <span class="setting-label" style="color: #ef4444;">Reset All Settings</span>
+      <span class="setting-value" style="color: #ef4444;">Reset</span>
+    </div>
+  </div>
+</ion-content>
