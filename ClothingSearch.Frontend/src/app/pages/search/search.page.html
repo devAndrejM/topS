@@ -1,104 +1,129 @@
-﻿<ion-content class="search-page">
+﻿<ion-content [fullscreen]="true" class="clean-search-content">
   <!-- Clean App Header -->
   <div class="app-header">
-    <h1 class="app-title">ClothingSearch</h1>
-    <p class="app-subtitle">Find the best price across stores</p>
+    <div class="app-title">ClothingSearch</div>
+    <div class="app-subtitle">Find the best price across stores</div>
   </div>
 
-  <!-- Simple Search Section -->
+  <!-- Search Section -->
   <div class="search-section" [class.has-results]="searchResults.length > 0">
     <div class="search-input-container">
       <ion-searchbar
-        [(ngModel)]="searchQuery"
+        #searchBar
+        [(ngModel)]="searchTerm"
         (ionInput)="onSearchInput($event)"
-        (ionClear)="onSearchClear()"
+        (ionClear)="clearSearch()"
         placeholder="Search for Nike Air Max, Adidas shoes..."
-        show-clear-button="focus"
-        debounce="300"
-        class="custom-searchbar">
+        class="clean-search-bar"
+        [class.compact]="searchResults.length > 0">
       </ion-searchbar>
     </div>
 
-    <!-- Filters - Only show AFTER search -->
+    <!-- Category Filters - Only show AFTER search -->
     <div class="filters-section" *ngIf="searchResults.length > 0">
-      <div class="filter-chips">
-        <ion-chip 
-          *ngFor="let category of categories" 
-          [class.active]="selectedCategory === category.key"
-          (click)="selectCategory(category.key)"
-          class="filter-chip">
-          {{ category.name }} ({{ category.count }})
-        </ion-chip>
-        
-        <ion-select 
-          [(ngModel)]="sortBy" 
-          (ionChange)="onSortChange()"
-          interface="popover"
-          class="sort-dropdown">
-          <ion-select-option value="price">Best Price</ion-select-option>
-          <ion-select-option value="delivery">Fastest Delivery</ion-select-option>
-          <ion-select-option value="relevance">Relevance</ion-select-option>
-        </ion-select>
-      </div>
-
-      <div class="results-count">
-        {{ getFilteredResults().length }} results found
-      </div>
-    </div>
-  </div>
-
-  <!-- Recent Searches - Only show when no search results -->
-  <div class="recent-searches" *ngIf="searchResults.length === 0 && recentSearches.length > 0">
-    <h3 class="recent-title">Recent Searches</h3>
-    <div class="recent-item" 
-         *ngFor="let search of recentSearches" 
-         (click)="performSearch(search)">
-      {{ search }}
-    </div>
-  </div>
-
-  <!-- Empty State - Only show when no search and no recent searches -->
-  <div class="empty-state" *ngIf="searchResults.length === 0 && recentSearches.length === 0">
-    <div class="empty-icon">🔍</div>
-    <h2 class="empty-title">Start your search</h2>
-    <p class="empty-message">Search across multiple stores to find the best deals</p>
-  </div>
-
-  <!-- Results Section - LIST VIEW -->
-  <div class="results-section" *ngIf="searchResults.length > 0">
-    <div class="product-result" 
-         *ngFor="let result of getFilteredResults(); let i = index"
-         [class.best-deal]="i === 0"
-         (click)="openExternalStore(result)">
-      
-      <!-- Best Deal Badge -->
-      <div class="best-deal-badge" *ngIf="i === 0">
-        🥇 Best Deal
-      </div>
-
-      <!-- Product Header -->
-      <div class="product-header">
-        <h3 class="product-name">{{ result.name }}</h3>
-        <p class="product-subtitle">{{ result.color }} • {{ result.size }}</p>
-      </div>
-
-      <!-- Store Result -->
-      <div class="store-result">
-        <div class="store-info">
-          <h4 class="store-name">{{ result.store }}</h4>
-          <div class="store-details">
-            <span class="availability" [class.available]="result.available" [class.unavailable]="!result.available">
-              {{ result.available ? '✓' : '✗' }} Size {{ result.size }}
-            </span>
-            <span class="delivery-info">{{ result.delivery }}</span>
-          </div>
+      <div class="filters-scroll">
+        <div class="filter-chips">
+          <ion-chip 
+            *ngFor="let category of availableCategories" 
+            [class.active]="selectedCategory === category.key"
+            (click)="selectCategory(category.key)"
+            class="filter-chip">
+            {{ category.name }} ({{ category.count }})
+          </ion-chip>
         </div>
+        <div class="sort-dropdown">
+          <ion-select 
+            [(ngModel)]="sortBy" 
+            (ionChange)="sortResults()"
+            interface="popover"
+            placeholder="Sort by">
+            <ion-select-option value="price">Best Price</ion-select-option>
+            <ion-select-option value="delivery">Fastest Delivery</ion-select-option>
+            <ion-select-option value="relevance">Relevance</ion-select-option>
+          </ion-select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Empty State - Clean and Simple -->
+  <div class="empty-state" *ngIf="!isLoading && searchResults.length === 0 && !hasSearched">
+    <div class="empty-icon">🔍</div>
+    <div class="empty-title">Start your search</div>
+    <div class="empty-message">Search across multiple stores to find the best deals</div>
+    
+    <!-- Recent Searches (Optional) -->
+    <div class="recent-searches" *ngIf="recentSearches.length > 0">
+      <div class="recent-title">Recent Searches</div>
+      <div class="recent-items">
+        <div class="recent-item" 
+             *ngFor="let recent of recentSearches" 
+             (click)="searchTerm = recent; performSearch()">
+          {{ recent }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading-state" *ngIf="isLoading">
+    <ion-spinner name="crescent"></ion-spinner>
+    <div class="loading-text">Searching stores...</div>
+  </div>
+
+  <!-- No Results State -->
+  <div class="empty-state" *ngIf="!isLoading && searchResults.length === 0 && hasSearched">
+    <div class="empty-icon">❌</div>
+    <div class="empty-title">No results found</div>
+    <div class="empty-message">Try different keywords or check spelling</div>
+  </div>
+
+  <!-- Results Section - List View (Google-style) -->
+  <div class="results-section" *ngIf="!isLoading && searchResults.length > 0">
+    <div class="results-header">
+      <div class="results-count">
+        {{ filteredResults.length }} results found
+        <span *ngIf="userSettings.shoeSize"> • {{ userSettings.shoeSize }}</span>
+      </div>
+    </div>
+
+    <!-- Product Results - Clean List View -->
+    <div class="results-list">
+      <div class="product-result" 
+           *ngFor="let result of filteredResults; let i = index"
+           [class.best-deal]="result.isBestDeal"
+           (click)="openStore(result)">
         
-        <div class="price-info" [class.best-price]="i === 0">
-          <div class="total-price">{{ result.totalPrice }} kn</div>
-          <div class="price-breakdown">
-            {{ result.price }} kn + 
-            {{ result.shipping === 0 ? 'Free shipping' : (result.shipping + ' kn shipping') }}
+        <!-- Best Deal Badge -->
+        <div class="best-deal-badge" *ngIf="result.isBestDeal">
+          🥇 Best Deal
+        </div>
+
+        <!-- Product Header -->
+        <div class="product-header">
+          <div class="product-name">{{ result.name }}</div>
+          <div class="product-subtitle">{{ result.variant }} • {{ result.size }}</div>
+        </div>
+
+        <!-- Store Result -->
+        <div class="store-result">
+          <div class="store-info">
+            <div class="store-name">{{ result.store }}</div>
+            <div class="store-details">
+              <div class="availability" [class.available]="result.inStock" [class.unavailable]="!result.inStock">
+                {{ result.inStock ? '✓ In Stock' : '✗ Out of Stock' }}
+              </div>
+              <span class="separator">•</span>
+              <span class="delivery">{{ result.delivery }}</span>
+            </div>
+          </div>
+          <div class="price-info" [class.best-price]="result.isBestDeal">
+            <div class="total-price">{{ result.totalPrice | currency:'EUR':'symbol':'1.2-2' }}</div>
+            <div class="price-breakdown">
+              {{ result.price | currency:'EUR':'symbol':'1.2-2' }}
+              <span *ngIf="result.shipping > 0"> + {{ result.shipping | currency:'EUR':'symbol':'1.2-2' }} shipping</span>
+              <span *ngIf="result.shipping === 0"> + Free shipping</span>
+            </div>
           </div>
         </div>
       </div>

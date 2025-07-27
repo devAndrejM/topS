@@ -1,54 +1,53 @@
-﻿<ion-header [translucent]="true">
+﻿<ion-header>
   <ion-toolbar>
-    <ion-title>Settings</ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/search"></ion-back-button>
     </ion-buttons>
+    <ion-title>Settings</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="settings-page">
+<ion-content class="settings-content">
   <div class="app-header">
-    <h1 class="app-title">Settings</h1>
-    <p class="app-subtitle">Configure your preferences</p>
+    <div class="app-title">Settings</div>
+    <div class="app-subtitle">Configure your preferences</div>
   </div>
 
   <!-- Location & Delivery Settings -->
   <div class="settings-group">
-    <h2 class="settings-group-title">Location & Delivery</h2>
+    <div class="settings-group-title">Location & Delivery</div>
     
     <div class="setting-item">
-      <label class="setting-label">Country</label>
+      <div class="setting-label">Country</div>
       <ion-select 
         [(ngModel)]="settings.country" 
-        (ionChange)="onSettingChange()"
+        (ionChange)="saveSettings()"
         interface="popover"
-        class="select-input">
+        class="setting-select">
         <ion-select-option value="Croatia">Croatia</ion-select-option>
         <ion-select-option value="Germany">Germany</ion-select-option>
         <ion-select-option value="Austria">Austria</ion-select-option>
         <ion-select-option value="Slovenia">Slovenia</ion-select-option>
-        <ion-select-option value="Italy">Italy</ion-select-option>
       </ion-select>
     </div>
-
+    
     <div class="setting-item">
-      <span class="setting-label">Currency</span>
-      <span class="setting-value">{{ getCurrencyForCountry(settings.country) }}</span>
+      <div class="setting-label">Currency</div>
+      <div class="setting-value">{{ getCurrencyForCountry(settings.country) }}</div>
     </div>
   </div>
 
   <!-- Size Preferences -->
   <div class="settings-group">
-    <h2 class="settings-group-title">Size Preferences</h2>
+    <div class="settings-group-title">Size Preferences</div>
     
     <div class="setting-item">
-      <label class="setting-label">Clothing Size</label>
+      <div class="setting-label">Clothing Size</div>
       <ion-select 
         [(ngModel)]="settings.clothingSize" 
-        (ionChange)="onSettingChange()"
+        (ionChange)="saveSettings()"
         interface="popover"
-        class="select-input">
+        class="setting-select">
         <ion-select-option value="XS">XS</ion-select-option>
         <ion-select-option value="S">S</ion-select-option>
         <ion-select-option value="M">M</ion-select-option>
@@ -57,14 +56,15 @@
         <ion-select-option value="XXL">XXL</ion-select-option>
       </ion-select>
     </div>
-
+    
     <div class="setting-item">
-      <label class="setting-label">Shoe Size</label>
+      <div class="setting-label">Shoe Size</div>
       <ion-select 
         [(ngModel)]="settings.shoeSize" 
-        (ionChange)="onSettingChange()"
+        (ionChange)="saveSettings()"
         interface="popover"
-        class="select-input">
+        class="setting-select">
+        <ion-select-option value="EU 38">EU 38</ion-select-option>
         <ion-select-option value="EU 39">EU 39</ion-select-option>
         <ion-select-option value="EU 40">EU 40</ion-select-option>
         <ion-select-option value="EU 41">EU 41</ion-select-option>
@@ -75,14 +75,14 @@
         <ion-select-option value="EU 46">EU 46</ion-select-option>
       </ion-select>
     </div>
-
+    
     <div class="setting-item">
-      <label class="setting-label">Size System</label>
+      <div class="setting-label">Size System</div>
       <ion-select 
         [(ngModel)]="settings.sizeSystem" 
-        (ionChange)="onSettingChange()"
+        (ionChange)="saveSettings()"
         interface="popover"
-        class="select-input">
+        class="setting-select">
         <ion-select-option value="EU">EU</ion-select-option>
         <ion-select-option value="US">US</ion-select-option>
         <ion-select-option value="UK">UK</ion-select-option>
@@ -92,56 +92,63 @@
 
   <!-- Search Preferences -->
   <div class="settings-group">
-    <h2 class="settings-group-title">Search Preferences</h2>
+    <div class="settings-group-title">Search Preferences</div>
     
     <div class="setting-item">
-      <label class="setting-label">Default Sort</label>
+      <div class="setting-label">Default Sort</div>
       <ion-select 
         [(ngModel)]="settings.defaultSort" 
-        (ionChange)="onSettingChange()"
+        (ionChange)="saveSettings()"
         interface="popover"
-        class="select-input">
+        class="setting-select">
         <ion-select-option value="price">Best Price</ion-select-option>
         <ion-select-option value="delivery">Fastest Delivery</ion-select-option>
         <ion-select-option value="relevance">Relevance</ion-select-option>
       </ion-select>
     </div>
-
+    
     <div class="setting-item">
-      <label class="setting-label">Show Unavailable Sizes</label>
+      <div class="setting-label">Show Unavailable Sizes</div>
       <ion-toggle 
         [(ngModel)]="settings.showUnavailable" 
-        (ionChange)="onSettingChange()"
-        color="primary">
+        (ionChange)="saveSettings()"
+        class="setting-toggle">
       </ion-toggle>
+    </div>
+  </div>
+
+  <!-- Data & Privacy -->
+  <div class="settings-group">
+    <div class="settings-group-title">Data & Privacy</div>
+    
+    <div class="setting-item" (click)="clearRecentSearches()">
+      <div class="setting-label">Clear Recent Searches</div>
+      <div class="setting-value action">Clear →</div>
+    </div>
+    
+    <div class="setting-item" (click)="resetSettings()">
+      <div class="setting-label">Reset All Settings</div>
+      <div class="setting-value action">Reset →</div>
     </div>
   </div>
 
   <!-- About -->
   <div class="settings-group">
-    <h2 class="settings-group-title">About</h2>
+    <div class="settings-group-title">About</div>
     
     <div class="setting-item">
-      <span class="setting-label">App Version</span>
-      <span class="setting-value">1.0.0</span>
+      <div class="setting-label">App Version</div>
+      <div class="setting-value">{{ appVersion }}</div>
     </div>
-
+    
     <div class="setting-item" (click)="openPrivacyPolicy()">
-      <span class="setting-label">Privacy Policy</span>
-      <span class="setting-value">View →</span>
+      <div class="setting-label">Privacy Policy</div>
+      <div class="setting-value action">View →</div>
     </div>
-
-    <div class="setting-item" (click)="openTermsOfService()">
-      <span class="setting-label">Terms of Service</span>
-      <span class="setting-value">View →</span>
-    </div>
-  </div>
-
-  <!-- Reset Settings -->
-  <div class="settings-group">
-    <div class="setting-item" (click)="resetSettings()">
-      <span class="setting-label" style="color: #ef4444;">Reset All Settings</span>
-      <span class="setting-value" style="color: #ef4444;">Reset</span>
+    
+    <div class="setting-item" (click)="openSupport()">
+      <div class="setting-label">Support</div>
+      <div class="setting-value action">Contact →</div>
     </div>
   </div>
 </ion-content>
