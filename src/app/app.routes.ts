@@ -3,6 +3,11 @@
 export const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
+    redirectTo: '/search',
+    pathMatch: 'full',
+  },
+  {
+    path: 'search',
+    loadComponent: () => import('./pages/search/search.page').then((m) => m.SearchPage),
   },
 ];
