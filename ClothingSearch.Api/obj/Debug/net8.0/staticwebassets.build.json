@@ -1,11 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "e2xBsYfFMHY+rrGGUijlBBJFzBkuOs815KOKK0vsH6c=",
-  "Source": "ClothingSearch.Api",
-  "BasePath": "_content/ClothingSearch.Api",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
-}
+{"Version":1,"Hash":"HUgvp+2iAW6RCw9k+uhgsY1RYA069pOvLvttAuOawZc=","Source":"ClothingSearch.Api","BasePath":"_content/ClothingSearch.Api","Mode":"Default","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}

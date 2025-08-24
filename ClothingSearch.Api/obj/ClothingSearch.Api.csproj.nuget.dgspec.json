@@ -1,20 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Dev\\ClothingSearchApp\\ClothingSearch.Api\\ClothingSearch.Api.csproj": {}
+    "D:\\topS\\topS\\ClothingSearch.Api\\ClothingSearch.Api.csproj": {}
   },
   "projects": {
-    "D:\\Dev\\ClothingSearchApp\\ClothingSearch.Api\\ClothingSearch.Api.csproj": {
+    "D:\\topS\\topS\\ClothingSearch.Api\\ClothingSearch.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Dev\\ClothingSearchApp\\ClothingSearch.Api\\ClothingSearch.Api.csproj",
+        "projectUniqueName": "D:\\topS\\topS\\ClothingSearch.Api\\ClothingSearch.Api.csproj",
         "projectName": "ClothingSearch.Api",
-        "projectPath": "D:\\Dev\\ClothingSearchApp\\ClothingSearch.Api\\ClothingSearch.Api.csproj",
-        "packagesPath": "C:\\Users\\Andrej\\.nuget\\packages\\",
-        "outputPath": "D:\\Dev\\ClothingSearchApp\\ClothingSearch.Api\\obj\\",
+        "projectPath": "D:\\topS\\topS\\ClothingSearch.Api\\ClothingSearch.Api.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\topS\\topS\\ClothingSearch.Api\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\DevExpress 24.1\\Components\\Offline Packages",
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Andrej\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 24.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +28,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
+          "C:\\Program Files\\DevExpress 24.1\\Components\\System\\Components\\Packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -40,43 +46,20 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        }
+        },
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.AspNetCore.Cors": {
+            "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
-              "version": "[2.3.0, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[9.0.7, )"
-            },
-            "Microsoft.EntityFrameworkCore.InMemory": {
-              "target": "Package",
-              "version": "[9.0.7, )"
-            },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[9.0.7, )"
-            },
-            "Npgsql.EntityFrameworkCore.PostgreSQL": {
-              "target": "Package",
-              "version": "[9.0.4, )"
+              "version": "[8.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[9.0.3, )"
-            },
-            "System.Text.Json": {
-              "target": "Package",
-              "version": "[9.0.7, )"
+              "version": "[6.4.0, )"
             }
           },
           "imports": [
@@ -98,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

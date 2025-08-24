@@ -138,3 +138,19 @@ jspm_packages/
 # Capacitor
 android/
 ios/
+
+# .NET / Visual Studio
+.vs/
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Bb]uild/
+packages/
+*.nupkg
