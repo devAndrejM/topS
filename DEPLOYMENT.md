@@ -1,69 +1,73 @@
 ﻿# ClothingSearch Deployment Checklist
 
-## Prerequisites ✅
+## Prerequisites
 - [x] Node.js 18+
 - [x] .NET 8 SDK  
-- [x] Ionic CLI
-- [x] Railway CLI: npm install -g @railway/cli
+- [x] Angular CLI
+- [ ] Ionic CLI (optional: `npm install -g @ionic/cli`)
+- [ ] Railway CLI: `npm install -g @railway/cli`
 
-## Local Development Setup ✅
+## Local Development Setup
 - [x] Project structure created
 - [x] Backend API with EF Core
 - [x] Frontend Ionic app
 - [x] Database models and migrations
 - [x] Search functionality
 - [x] User settings
+- [x] Build configuration fixed
+- [x] Environment files created
 
-## Next Steps for Deployment 🚀
+## Next Steps for Deployment
 
 ### 1. Database Setup (Choose one)
 
 #### Option A: Railway PostgreSQL (Recommended)
-`ash
+```bash
 railway login
 railway new clothingsearch-app
 railway add postgresql
 railway variables  # Copy DATABASE_URL
-`
+```
 
 #### Option B: Local PostgreSQL
-`powershell
+```powershell
 ./database/setup-local-postgres.ps1
-`
+```
 
 ### 2. Update Configuration
 
 #### Backend (appsettings.json)
-`json
+```json
 {
   "ConnectionStrings": {
     "DefaultConnection": "YOUR_RAILWAY_CONNECTION_STRING"
   }
 }
-`
+```
 
 #### Frontend (environment.prod.ts)
-`	ypescript
+```typescript
 export const environment = {
   production: true,
   apiUrl: 'https://your-api-domain.railway.app'
 };
-`
+```
 
 ### 3. Deploy to Railway
 
 #### Deploy Backend
-`ash
+```bash
 cd ClothingSearch.Api
 railway up
-`
+```
 
 #### Deploy Frontend
-`ash
+```bash
 cd ClothingSearch.Frontend
-ionic build --prod
+ng build --configuration=production
+# or: ionic build --prod (if Ionic CLI installed)
 railway up
-`
+```
 
 ### 4. Configure Environment Variables in Railway
 - ASPNETCORE_ENVIRONMENT=Production
@@ -76,7 +80,30 @@ railway up
 - [ ] Search functionality
 - [ ] Settings save/load
 
-## Affiliate Networks Setup 🤝
+## Build Commands Reference
+
+### Frontend Build Options
+```powershell
+# Angular CLI (what you're currently using)
+ng build --configuration=production
+
+# Development build (faster, larger files)
+ng build --configuration=development
+
+# Ionic CLI (if installed)
+ionic build --prod
+```
+
+### Frontend Serve Options
+```powershell
+# Angular CLI (port 4200)
+ng serve
+
+# Ionic CLI (port 8100, if installed)
+ionic serve
+```
+
+## Affiliate Networks Setup
 
 ### Priority 1: Get approved for affiliate programs
 1. **Amazon Associates** - amazon.com/associates
@@ -90,12 +117,13 @@ railway up
 3. Implement product caching
 4. Add error handling
 
-## Store Integration Roadmap 📈
+## Store Integration Roadmap
 
 ### Phase 1 (MVP) - 2 weeks
 - [x] Basic project structure
 - [x] Search interface
 - [x] User settings
+- [x] Build system working
 - [ ] Deploy to Railway
 - [ ] 2-3 store integrations
 
@@ -111,13 +139,13 @@ railway up
 - [ ] Analytics dashboard
 - [ ] User feedback system
 
-## Performance Targets 🎯
+## Performance Targets
 - [ ] Search results < 3 seconds
 - [ ] Page load < 2 seconds
 - [ ] Mobile responsive
 - [ ] 95% uptime
 
-## Marketing & Growth 📊
+## Marketing & Growth
 - [ ] Croatian fashion blogs outreach
 - [ ] Social media presence
 - [ ] SEO optimization
